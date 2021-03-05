@@ -15,7 +15,27 @@ gsutil cp gs://igti-data-science/PPR-ALL.csv .
 #import
 mongoimport --type csv -d sales -c sales --headerline --drop PPR-ALL.csv
 
+# add db user
+sudo mongo --eval 'db.createUser({user:"sales", pwd:"12345", roles:[{role: "readWrite", db: "sales"}]})' sales
+
+# allow remote access
+sudo gsutil cp gs://igti-data-science/mongod.conf /etc
+
+#add local ip to mongo
+replace="$(hostname -I)"
+echo "${replace}"
+search="{ip}"
+echo "${search}"
+
+sudo sed -i "s/${search}/${replace}/g" /etc/mongod.conf 
+
+# restart
+sudo systemctl restart mongod;
+
+
+
 
 # use sales
 # db.sales.find()
+# mongo -u sales -p 12345 localhost/sales
 

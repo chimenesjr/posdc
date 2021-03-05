@@ -26,9 +26,11 @@ resource "google_compute_instance" "mongodb" {
         network = "default"
         
             access_config {
-        
+                
         }
     }
+    
+    tags = ["mongo-firewall"]
 
     service_account {
         scopes = ["userinfo-email", "compute-ro", "storage-ro"]
@@ -36,15 +38,16 @@ resource "google_compute_instance" "mongodb" {
 }
  
 resource "google_compute_firewall" "default" {
-    name    = "nginx-firewall"
+    name    = "mongo-firewall"
     network = "default"
     
     allow {
         protocol = "tcp"
-        ports    = ["80","443"]
+        ports    = ["80","443", "27017"]
     }
     
     allow {
         protocol = "icmp"
     }
 }
+
