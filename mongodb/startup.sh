@@ -33,9 +33,13 @@ sudo sed -i "s/${search}/${replace}/g" /etc/mongod.conf
 sudo systemctl restart mongod;
 
 
+# install telnet
+sudo apt-get install telnet
+
 
 
 # use sales
 # db.sales.find()
+# db.sales.findOne()
 # mongo -u sales -p 12345 localhost/sales
 

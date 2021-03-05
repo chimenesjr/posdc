@@ -1,5 +1,3 @@
-# gcloud compute ssh mongodb --zone us-central1-a
-
 provider "google" {
     project     = var.project
     region      = var.region
@@ -51,3 +49,4 @@ resource "google_compute_firewall" "default" {
     }
 }
 
+# gcloud compute ssh mongodb --zone us-central1-a
