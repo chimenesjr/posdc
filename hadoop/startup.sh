@@ -1,10 +1,4 @@
 
-# nginx for fun
-sudo apt-get -y update; 
-sudo apt-get -y dist-upgrade;    
-sudo apt-get -y install nginx;
-
-
 # some updates
 sudo apt-get update
 sudo apt-get install \
@@ -27,4 +21,4 @@ sudo apt-get update
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 
 # test docker
-sudo docker run hello-world
+sudo docker run --name nginx -d -p 80:80 nginx
