@@ -35,7 +35,7 @@ sudo systemctl restart mongod;
 
 # install telnet
 sudo apt-get install telnet
-
+# telnet 10.210.139.27 6379
 
 
 # use sales

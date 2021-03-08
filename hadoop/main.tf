@@ -9,7 +9,7 @@ resource "random_id" "instance_id" {
  
 resource "google_compute_instance" "hadoop" {
     name         = "hadoop"
-    machine_type = "f1-micro"
+    machine_type = "e2-medium"
     zone         = var.zone
  
     boot_disk {
@@ -28,7 +28,7 @@ resource "google_compute_instance" "hadoop" {
         }
     }
     
-    tags = ["mongo-firewall"]
+    tags = ["hadoop-firewall"]
 
     service_account {
         scopes = ["userinfo-email", "compute-ro", "storage-ro"]
@@ -36,12 +36,12 @@ resource "google_compute_instance" "hadoop" {
 }
  
 resource "google_compute_firewall" "default" {
-    name    = "mongo-firewall"
+    name    = "hadoop-firewall"
     network = "default"
     
     allow {
         protocol = "tcp"
-        ports    = ["80","443", "27017"]
+        ports    = ["80","443", "8088", "9870" ]
     }
     
     allow {

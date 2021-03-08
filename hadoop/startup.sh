@@ -22,3 +22,20 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 
 # test docker
 sudo docker run --name nginx -d -p 80:80 nginx
+
+# install docker-compose
+sudo curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+
+
+# test hadoop
+git clone https://github.com/big-data-europe/docker-hadoop.git
+cd docker-hadoop
+docker-compose up -d
+
+
+# sources
+# https://github.com/big-data-europe/docker-hadoop
+# https://clubhouse.io/developer-how-to/how-to-set-up-a-hadoop-cluster-in-docker/
+# https://hub.docker.com/r/sequenceiq/hadoop-docker/
+# curl localhost:9870
