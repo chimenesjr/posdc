@@ -14,7 +14,7 @@ resource "google_compute_instance" "hadoop" {
  
     boot_disk {
         initialize_params {
-            image = "ubuntu-os-cloud/ubuntu-1604-lts"
+            image = "ubuntu-os-cloud/ubuntu-2004-lts"
         }
     }
     
@@ -41,7 +41,7 @@ resource "google_compute_firewall" "default" {
     
     allow {
         protocol = "tcp"
-        ports    = ["80","443", "8088", "9870" ]
+        ports    = ["80","443", "8088", "9870", "9000", "50070" ]
     }
     
     allow {

@@ -23,15 +23,18 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 # test docker
 sudo docker run --name nginx -d -p 80:80 nginx
 
-# install docker-compose
-sudo curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
+sudo docker run --name hadoop -d -p 8088:8088 -p 50070:50070 sequenceiq/hadoop-docker:2.7.1
 
+#docker exec -it hadoop bash
+
+# install docker-compose
+#sudo curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+#sudo chmod +x /usr/local/bin/docker-compose
 
 # test hadoop
-git clone https://github.com/big-data-europe/docker-hadoop.git
-cd docker-hadoop
-docker-compose up -d
+#git clone https://github.com/big-data-europe/docker-hadoop.git
+#cd docker-hadoop
+#sudo docker-compose up
 
 
 # sources
