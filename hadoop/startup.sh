@@ -37,7 +37,13 @@ sudo docker run --name nginx -d -p 80:80 nginx
 # docker hadoop
 sudo docker run --name hadoop -d -p 8088:8088 -p 50070:50070 sequenceiq/hadoop-docker:2.7.1
 
-#docker exec -it hadoop bash
+# docker exec -it hadoop bash
+
+
+# copy source files
+git clone https://github.com/chimenesjr/posdc.git
+docker cp posdc/hadoop/examples/. hadoop:/usr/local/hadoop/examples/
+
 
 # install docker-compose
 #sudo curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
