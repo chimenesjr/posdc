@@ -20,9 +20,21 @@ echo \
 sudo apt-get update
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 
-# test docker
+#install Apache Ant
+sudo apt install -y openjdk-11-jre
+sudo apt install snapd
+sudo snap install ant --classic
+sudo apt update
+sudo apt install ant
+wget https://mirror-hk.koddos.net/apache//ant/binaries/apache-ant-1.10.9-bin.tar.gz
+sudo tar -xf apache-ant-1.10.9-bin.tar.gz -C /usr/local
+sudo ln -s /usr/local/apache-ant-1.10.9/ /usr/local/ant
+# https://idroot.us/install-apache-ant-ubuntu-20-04/
+
+# docker nginx
 sudo docker run --name nginx -d -p 80:80 nginx
 
+# docker hadoop
 sudo docker run --name hadoop -d -p 8088:8088 -p 50070:50070 sequenceiq/hadoop-docker:2.7.1
 
 #docker exec -it hadoop bash
