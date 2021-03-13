@@ -41,7 +41,7 @@ resource "google_compute_firewall" "default" {
     
     allow {
         protocol = "tcp"
-        ports    = ["80","443", "8088", "9870", "9000", "50070" ]
+        ports    = ["80","443", "8088", "50070" ]
     }
     
     allow {
