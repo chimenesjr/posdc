@@ -9,7 +9,7 @@ resource "random_id" "instance_id" {
  
 resource "google_compute_instance" "hadoop" {
     name         = "hadoop"
-    machine_type = "e2-medium"
+    machine_type = "e2-medium" # e2-micro # e2-small
     zone         = var.zone
  
     boot_disk {
@@ -41,7 +41,7 @@ resource "google_compute_firewall" "default" {
     
     allow {
         protocol = "tcp"
-        ports    = ["80","443", "8088", "50070" ]
+        ports    = ["80","443", "8088", "50070", "50075", "9000" ]
     }
     
     allow {
