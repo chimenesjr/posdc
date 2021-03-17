@@ -9,7 +9,7 @@ ExemploIGTI
 <property name="basedir" location="." />
 <property name="src.dir" location="src" />
 <property name="build.dir" location="${basedir}/classes"/>
-<property name="hadoop.version" value="3.0.3"/>
+<property name="hadoop.version" value="3.2.1"/>
 <property name="hadoop.dir" value="/usr/local/hadoop"/>
 <property name="app.jar" location="${basedir}/ExemploIGTI.jar"/>
 
