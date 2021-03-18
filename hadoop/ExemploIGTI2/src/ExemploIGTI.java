@@ -74,18 +74,18 @@ public class ExemploIGTI extends Configured implements Tool
     public static class ReduceIGTI extends MapReduceBase implements Reducer<Text, Text, Text, Text> {       
       
        public void reduce (Text key, Iterator<Text> values, OutputCollector<Text, Text> output, Reporter reporter) throws IOException {                                                                                 double media = 0.0; 
-            int acumuladorItens = 0, contaVendas = 0;
+            int max = 0;
             Text value = new Text();
         
             while (values.hasNext()) {
-                value = values.next();               
-                contaVendas++;
-                acumuladorItens += Integer.parseInt(value.toString());
-            }            
-            media = acumuladorItens / new Double(contaVendas);
-                          
-            value.set(String.valueOf(media)); 
-            output.collect(key, value);           
+                int current = new Integer(values.next());
+                
+                if (current > max)
+                  max = current;
+            }
+
+            value.set(String.valueOf(max)); 
+            output.collect(key, value);        
       }            
     
     }
