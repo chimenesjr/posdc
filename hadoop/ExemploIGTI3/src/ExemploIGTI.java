@@ -92,17 +92,17 @@ public class ExemploIGTI extends Configured implements Tool
 
             if (maior >= 50000) {
               classificacao = "Bonus 15%";
-              bonus = maior * 0,15;
+              bonus = maior * 0.15;
             }
             else if (maior > 20000 && maior < 50000) {
               classificacao = "Bonus 8%";
-              bonus = maior * 0,8;
+              bonus = maior * 0.08;
             }
             else {
               classificacao = "Nao ha bonus";
             }
 
-            value.set(String.valueOf(maior) + "\\t" + classificacao + "\\t" + String.valueOf(bonus));
+            value.set(String.valueOf(maior) + "\t" + classificacao + "\t" + String.valueOf(bonus));
             output.collect(key, value);
       }            
     
