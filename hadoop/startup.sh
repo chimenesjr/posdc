@@ -7,6 +7,8 @@ sudo apt-get install \
     curl \
     gnupg
 
+git config --global user.name "fulano"
+git config --global user.email "fulano_igti@gmail.com"
 
 # Docker’s official GPG key:
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
