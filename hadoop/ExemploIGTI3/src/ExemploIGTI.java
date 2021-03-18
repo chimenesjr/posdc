@@ -76,6 +76,7 @@ public class ExemploIGTI extends Configured implements Tool
             
             double maior = 0.0;
             Text value = new Text();
+            String classificacao;
 
             while (values.hasNext()) {
               
@@ -87,28 +88,43 @@ public class ExemploIGTI extends Configured implements Tool
 
             }
 
-            value.set(String.valueOf(maior));
+            double bonus = 0.0;
+
+            if (maior >= 50000) {
+              classificacao = "Bonus 15%";
+              bonus = maior * 0,15;
+            }
+            else if (maior > 20000 && maior < 50000) {
+              classificacao = "Bonus 8%";
+              bonus = maior * 0,8;
+            }
+            else {
+              classificacao = "Nao ha bonus";
+            }
+
+            value.set(String.valueOf(maior) + "\\t" + classificacao + "\\t" + String.valueOf(bonus));
             output.collect(key, value);
       }            
     
     }
 }
 
+
+
+
 /*
 
 test inside
 
-  docker exec hadoop mkdir /usr/local/hadoop/examples/ExemploIGTI2
-  docker exec hadoop ls -l /usr/local/hadoop/examples/ExemploIGTI2
+  docker exec hadoop mkdir /usr/local/hadoop/examples/ExemploIGTI3
+  docker exec hadoop ls -l /usr/local/hadoop/examples/ExemploIGTI3
   cd /usr/local && git clone https://github.com/chimenesjr/posdc.git && cd posdc
 
-  docker cp /usr/local/posdc/hadoop/ExemploIGTI2/. hadoop:/usr/local/hadoop/examples/ExemploIGTI2
-  docker exec hadoop ant -f /usr/local/hadoop/examples/ExemploIGTI2/build_ExemploIGTI.xml makejar
-  docker exec hadoop ./usr/local/hadoop/bin/hadoop jar /usr/local/hadoop-2.7.1/examples/ExemploIGTI2/ExemploIGTI.jar IGTI.ExemploIGTI
+  docker cp /usr/local/posdc/hadoop/ExemploIGTI3/. hadoop:/usr/local/hadoop/examples/ExemploIGTI3
+  docker exec hadoop ant -f /usr/local/hadoop/examples/ExemploIGTI3/build_ExemploIGTI.xml makejar
+  docker exec hadoop ./usr/local/hadoop/bin/hadoop jar /usr/local/hadoop-2.7.1/examples/ExemploIGTI3/ExemploIGTI.jar IGTI.ExemploIGTI
   docker exec hadoop /usr/local/hadoop/bin/hdfs dfs -ls /user/root
   docker exec hadoop /usr/local/hadoop/bin/hdfs dfs -cat /user/root/Saida8914c34f-e09a-463f-9834-82bc1b0783ff/part-00000
 
 */
-
-
 
