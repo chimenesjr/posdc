@@ -55,6 +55,8 @@ public class ExemploIGTI extends Configured implements Tool
       
       public void map(LongWritable key, Text value, OutputCollector<Text, Text> output, Reporter reporter)  throws IOException {
 
+        System.out.println("======== START MAP ========" + new DateTime(new Date()).toString("yyyy-MM-dd-HH-mm"));
+
         Text txtChave = new Text();
         Text txtValor = new Text();
 
@@ -66,6 +68,7 @@ public class ExemploIGTI extends Configured implements Tool
 
         output.collect(txtChave, txtValor);            
 
+        System.out.println("======== END MAP ========" + new DateTime(new Date()).toString("yyyy-MM-dd-HH-mm"));
       }
     }
 
@@ -74,6 +77,8 @@ public class ExemploIGTI extends Configured implements Tool
       
       public void reduce (Text key, Iterator<Text> values, OutputCollector<Text, Text> output, Reporter reporter) throws IOException {                                                                                 double media = 0.0; 
             
+            System.out.println("******** START REDUCE ********" + new DateTime(new Date()).toString("yyyy-MM-dd-HH-mm"));
+
             double maior = 0.0;
             Text value = new Text();
             String classificacao;
@@ -104,6 +109,8 @@ public class ExemploIGTI extends Configured implements Tool
 
             value.set(String.valueOf(maior) + "\t" + classificacao + "\t" + String.valueOf(bonus));
             output.collect(key, value);
+
+            System.out.println("******** START REDUCE ********" + new DateTime(new Date()).toString("yyyy-MM-dd-HH-mm"));
       }            
     
     }
