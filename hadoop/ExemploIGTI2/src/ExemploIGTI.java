@@ -43,49 +43,52 @@ public class ExemploIGTI extends Configured implements Tool
             conf.setMapperClass(MapIGTI.class);
             conf.setReducerClass(ReduceIGTI.class);
             JobClient.runJob(conf);   
-                                          
+                                
         }
         catch ( Exception e ) {
             throw e;
         }
         return 0;
-     }
- 
+    }
+
     public static class MapIGTI extends MapReduceBase implements Mapper<LongWritable, Text, Text, Text> {
-            
+      
       public void map(LongWritable key, Text value, OutputCollector<Text, Text> output, Reporter reporter)  throws IOException {
 
-            Text txtChave = new Text();
-            Text txtValor = new Text();
-             
-            String codigoCliente = value.toString().substring(58, 61);
-            String qtdeItens = value.toString().substring(76, 84);
+        Text txtChave = new Text();
+        Text txtValor = new Text();
 
-            txtChave.set(codigoCliente);
-            txtValor.set(qtdeItens);                       
-            
-            output.collect(txtChave, txtValor);            
+        String codigoCliente = value.toString().substring(58, 61);
+        String qtdeItens = value.toString().substring(76, 84);
 
-                       
-      }        
+        txtChave.set(codigoCliente);
+        txtValor.set(qtdeItens);                       
+
+        output.collect(txtChave, txtValor);            
+
+      }
     }
- 
-   
+
+
     public static class ReduceIGTI extends MapReduceBase implements Reducer<Text, Text, Text, Text> {       
       
-       public void reduce (Text key, Iterator<Text> values, OutputCollector<Text, Text> output, Reporter reporter) throws IOException {                                                                                 double media = 0.0; 
-            int acumuladorItens = 0, contaVendas = 0;
+      public void reduce (Text key, Iterator<Text> values, OutputCollector<Text, Text> output, Reporter reporter) throws IOException {                                                                                 double media = 0.0; 
+            
+            double maior = 0.0;
             Text value = new Text();
-        
+
             while (values.hasNext()) {
-                value = values.next();               
-                contaVendas++;
-                acumuladorItens += Integer.parseInt(value.toString());
-            }            
-            media = acumuladorItens / new Double(contaVendas);
-                          
-            value.set(String.valueOf(media)); 
-            output.collect(key, value);         
+              
+              value = values.next();
+              double current = Double.parseDouble(value.toString());
+              
+              if (current > maior)
+                maior = current;
+
+            }
+
+            value.set(String.valueOf(maior));
+            output.collect(key, value);
       }            
     
     }
