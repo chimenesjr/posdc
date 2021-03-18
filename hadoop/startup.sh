@@ -63,6 +63,7 @@ docker exec hadoop /usr/local/hadoop/bin/hdfs dfs -cat /user/root/Saida/part-000
 # docker cp /usr/local/posdc/hadoop/ExemploIGTI2/. hadoop:/usr/local/hadoop/examples/ExemploIGTI2
 # docker exec hadoop ls -l /usr/local/hadoop/examples/ExemploIGTI2
 # docker exec hadoop ant -f /usr/local/hadoop/examples/ExemploIGTI2/build_ExemploIGTI.xml makejar
+# docker exec hadoop ./usr/local/hadoop/bin/hadoop jar /usr/local/hadoop-2.7.1/examples/ExemploIGTI2/ExemploIGTI.jar IGTI.ExemploIGTI
 
 
 # install docker-compose
