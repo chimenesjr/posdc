@@ -25,7 +25,7 @@ public class ExemploIGTI extends Configured implements Tool
             conf.setJobName("Exemplo IGTI - Media");            
                
             final FileSystem fs = FileSystem.get(conf); 
-            Path diretorioEntrada = new Path("Entrada"), diretorioSaida = new Path("Saida");            
+            Path diretorioEntrada = new Path("Entrada" + UUID.randomUUID().toString()), diretorioSaida = new Path("Saida" +  + UUID.randomUUID().toString());
 
             /* Criar um diretorio de entrada no HDFS */
             if (!fs.exists(diretorioEntrada))
