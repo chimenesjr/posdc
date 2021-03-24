@@ -19,16 +19,13 @@ ExemploIGTI
 <pathelement location="${build.dir}"/>
 <pathelement location="${hadoop.dir}/hadoop-core-${hadoop.version}.jar"/>
 </path>
-
 <target name="compile" description="compile all Java classes">
 <mkdir dir="${build.dir}"/>
 <javac classpathref="build.classpath" destdir="${build.dir}" debug="on" deprecation="off">
 <src path="${src.dir}"/>
 </javac>
 </target>
-
 <target name="makejar" description="wrap the application class in a JAR file"   depends="compile">
 <jar destfile="${app.jar}" basedir="${build.dir}" includes="IGTI/**"/>
 </target>
-
 </project>

@@ -50,6 +50,7 @@ docker cp ant.sh hadoop:/etc/profile.d/ant.sh
 docker exec hadoop chmod +x /etc/profile.d/ant.sh
 docker exec hadoop source /etc/profile.d/ant.sh
 
+# docker exec hadoop rm -rf /usr/local/hadoop/examples/
 
 # build and execute app
 docker exec hadoop ant -f /usr/local/hadoop/examples/ExemploIGTI/build_ExemploIGTI.xml makejar
@@ -59,20 +60,3 @@ docker exec hadoop cp /usr/local/hadoop/examples/examples/arquivoBigData.txt /us
 docker exec hadoop ./usr/local/hadoop/bin/hadoop jar /usr/local/hadoop-2.7.1/examples/ExemploIGTI/ExemploIGTI.jar IGTI.ExemploIGTI
 docker exec hadoop /usr/local/hadoop/bin/hdfs dfs -cat /user/root/Saida/part-00000
 
-
-
-# install docker-compose
-#sudo curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
-#sudo chmod +x /usr/local/bin/docker-compose
-
-# test hadoop
-#git clone https://github.com/big-data-europe/docker-hadoop.git
-#cd docker-hadoop
-#sudo docker-compose up
-
-
-# sources
-# https://github.com/big-data-europe/docker-hadoop
-# https://clubhouse.io/developer-how-to/how-to-set-up-a-hadoop-cluster-in-docker/
-# https://hub.docker.com/r/sequenceiq/hadoop-docker/
-# curl localhost:9870
