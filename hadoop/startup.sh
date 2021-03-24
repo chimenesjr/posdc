@@ -52,11 +52,11 @@ docker exec hadoop source /etc/profile.d/ant.sh
 
 
 # build and execute app
-docker exec hadoop ant -f /usr/local/hadoop/examples/ExemploIGTI/build_ExemploIGTI.xml makejar
+docker exec hadoop ant -f /usr/local/hadoop/examples/ExemploIGTI/build_HDAJobs.xml makejar
 docker exec hadoop mkdir /usr/local/hadoop/Dados
 sleep 30
 docker exec hadoop cp /usr/local/hadoop/examples/examples/arquivoBigData.txt /usr/local/hadoop/Dados
-docker exec hadoop ./usr/local/hadoop/bin/hadoop jar /usr/local/hadoop-2.7.1/examples/ExemploIGTI/ExemploIGTI.jar HDA.HDAJobs
+docker exec hadoop ./usr/local/hadoop/bin/hadoop jar /usr/local/hadoop-2.7.1/examples/HDAJobs/HDAJobs.jar HDA.HDAJobs
 docker exec hadoop /usr/local/hadoop/bin/hdfs dfs -cat /user/root/Saida/part-00000
 
 

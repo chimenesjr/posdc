@@ -2,16 +2,16 @@
 
 <project name="pegasus" default="run" basedir="." >
 <description>
-ExemploIGTI
+HDAJobs
 </description>
 
 
-<property name="basedir" location="/usr/local/hadoop/examples/examples/ExemploIGTI" />
+<property name="basedir" location="/usr/local/hadoop/examples/examples/HDAJobs" />
 <property name="src.dir" location="src" />
 <property name="build.dir" location="${basedir}/classes"/>
 <property name="hadoop.version" value="2.7.1"/>
 <property name="hadoop.dir" value="/usr/local/hadoop"/>
-<property name="app.jar" location="${basedir}/ExemploIGTI.jar"/>
+<property name="app.jar" location="${basedir}/HDAJobs.jar"/>
 
 
 <!-- classpath definitions -->
