@@ -34,10 +34,12 @@ sudo docker run --name hadoop -d \
 
 # docker exec -it hadoop bash
 
+# docker stop hadoop & docker rm hadoop
+# docker exec hadoop rm -rf /usr/local/hadoop/examples/
 
 # copy source files
 git clone https://github.com/chimenesjr/posdc.git
-docker cp posdc/hadoop/. hadoop:/usr/local/hadoop/examples/
+docker cp /posdc/hadoop/. hadoop:/usr/local/hadoop/examples/
 
 #install Apache Ant (https://www.unixmen.com/install-apache-ant-maven-tomcat-centos-76-5/)
 wget https://downloads.apache.org//ant/binaries/apache-ant-1.9.15-bin.zip
@@ -50,7 +52,6 @@ docker cp ant.sh hadoop:/etc/profile.d/ant.sh
 docker exec hadoop chmod +x /etc/profile.d/ant.sh
 docker exec hadoop source /etc/profile.d/ant.sh
 
-# docker exec hadoop rm -rf /usr/local/hadoop/examples/
 
 # build and execute app
 docker exec hadoop ant -f /usr/local/hadoop/examples/ExemploIGTI/build_ExemploIGTI.xml makejar
