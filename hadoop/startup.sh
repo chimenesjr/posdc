@@ -25,7 +25,7 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 # docker nginx
 # sudo docker run --name nginx -d -p 80:80 nginx
 
-# # docker hadoop
+# docker hadoop
 sudo docker run --name hadoop -d \
     -p 8088:8088 \
     -p 50070:50070 \
@@ -34,7 +34,8 @@ sudo docker run --name hadoop -d \
 
 # docker exec -it hadoop bash
 
-# docker stop hadoop & docker rm hadoop
+# docker stop hadoop 
+# docker rm hadoop
 # docker exec hadoop rm -rf /usr/local/hadoop/examples/
 
 # copy source files
@@ -61,3 +62,9 @@ docker exec hadoop cp /usr/local/hadoop/examples/examples/arquivoBigData.txt /us
 docker exec hadoop ./usr/local/hadoop/bin/hadoop jar /usr/local/hadoop-2.7.1/examples/ExemploIGTI/ExemploIGTI.jar IGTI.ExemploIGTI
 docker exec hadoop /usr/local/hadoop/bin/hdfs dfs -cat /user/root/Saida/part-00000
 
+# Job01
+# docker exec hadoop rm -rf /usr/local/hadoop/HDA/
+git clone https://github.com/chimenesjr/HadoopDataAnalysis.git
+docker cp /HadoopDataAnalysis/src/App/. hadoop:/usr/local/hadoop/HDA/
+docker exec hadoop ant -f /usr/local/hadoop/HDA/build_Job01.xml makejar
+docker exec hadoop ./usr/local/hadoop/bin/hadoop jar /usr/local/hadoop/HDA/ExemploIGTI.jar IGTI.ExemploIGTI
