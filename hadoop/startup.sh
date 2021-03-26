@@ -52,9 +52,9 @@ gsutil cp gs://igti-data-science/hadoop/ant.sh .
 docker cp ant.sh hadoop:/etc/profile.d/ant.sh
 docker exec hadoop chmod +x /etc/profile.d/ant.sh
 docker exec hadoop source /etc/profile.d/ant.sh
+sleep 30
 
-
-# build and execute app
+# Execute IGTI Example
 # docker exec hadoop ant -f /usr/local/hadoop/examples/ExemploIGTI/build_ExemploIGTI.xml makejar
 # docker exec hadoop mkdir /usr/local/hadoop/Dados
 # docker exec hadoop cp /usr/local/hadoop/examples/examples/arquivoBigData.txt /usr/local/hadoop/Dados
@@ -69,4 +69,6 @@ gsutil cp gs://igti-data-science/PPR-ALL.csv /HadoopDataAnalysis/src/App/data/PP
 docker cp /HadoopDataAnalysis/src/App/. hadoop:/usr/local/hadoop/App/
 docker exec hadoop ant -f /usr/local/hadoop/App/build_App.xml makejar
 docker exec hadoop ./usr/local/hadoop/bin/hadoop jar /usr/local/hadoop/App/App.jar HDA.App
-#docker exec hadoop /usr/local/hadoop/bin/hdfs dfs ls /user/root/Saida/
+
+docker cp hadoop:/usr/local/hadoop/App/data/part-00000 /HadoopDataAnalysis/src/App/data
+cat /HadoopDataAnalysis/src/App/data/part-00000
