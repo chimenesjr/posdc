@@ -55,16 +55,18 @@ docker exec hadoop source /etc/profile.d/ant.sh
 
 
 # build and execute app
-docker exec hadoop ant -f /usr/local/hadoop/examples/ExemploIGTI/build_ExemploIGTI.xml makejar
-docker exec hadoop mkdir /usr/local/hadoop/Dados
-sleep 30
-docker exec hadoop cp /usr/local/hadoop/examples/examples/arquivoBigData.txt /usr/local/hadoop/Dados
-docker exec hadoop ./usr/local/hadoop/bin/hadoop jar /usr/local/hadoop-2.7.1/examples/ExemploIGTI/ExemploIGTI.jar IGTI.ExemploIGTI
-docker exec hadoop /usr/local/hadoop/bin/hdfs dfs -cat /user/root/Saida/part-00000
+# docker exec hadoop ant -f /usr/local/hadoop/examples/ExemploIGTI/build_ExemploIGTI.xml makejar
+# docker exec hadoop mkdir /usr/local/hadoop/Dados
+# docker exec hadoop cp /usr/local/hadoop/examples/examples/arquivoBigData.txt /usr/local/hadoop/Dados
+# docker exec hadoop ./usr/local/hadoop/bin/hadoop jar /usr/local/hadoop-2.7.1/examples/ExemploIGTI/ExemploIGTI.jar IGTI.ExemploIGTI
+# docker exec hadoop /usr/local/hadoop/bin/hdfs dfs -cat /user/root/Saida/part-00000
 
 # Job01
-# docker exec hadoop rm -rf /usr/local/hadoop/HDA/
+# docker exec hadoop rm -rf /usr/local/hadoop/App/
 git clone https://github.com/chimenesjr/HadoopDataAnalysis.git
-docker cp /HadoopDataAnalysis/src/App/. hadoop:/usr/local/hadoop/HDA/
-docker exec hadoop ant -f /usr/local/hadoop/HDA/build_Job01.xml makejar
-docker exec hadoop ./usr/local/hadoop/bin/hadoop jar /usr/local/hadoop/HDA/ExemploIGTI.jar IGTI.ExemploIGTI
+mkdir data
+gsutil cp gs://igti-data-science/PPR-ALL.csv /HadoopDataAnalysis/src/App/data/PPR-ALL.csv
+docker cp /HadoopDataAnalysis/src/App/. hadoop:/usr/local/hadoop/App/
+docker exec hadoop ant -f /usr/local/hadoop/App/build_App.xml makejar
+docker exec hadoop ./usr/local/hadoop/bin/hadoop jar /usr/local/hadoop/App/App.jar HDA.App
+#docker exec hadoop /usr/local/hadoop/bin/hdfs dfs ls /user/root/Saida/
