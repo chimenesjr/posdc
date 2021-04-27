@@ -72,3 +72,4 @@ docker exec hadoop ./usr/local/hadoop/bin/hadoop jar /usr/local/hadoop/App/App.j
 
 docker cp hadoop:/usr/local/hadoop/App/data/part-00000 /HadoopDataAnalysis/src/App/data
 cat /HadoopDataAnalysis/src/App/data/part-00000
+gsutil cp /HadoopDataAnalysis/src/App/data/part-00000 gs://igti-data-science/result/

@@ -31,7 +31,7 @@ resource "google_compute_instance" "hadoop" {
     tags = ["hadoop-firewall"]
 
     service_account {
-        scopes = ["userinfo-email", "compute-ro", "storage-ro"]
+        scopes = ["userinfo-email", "compute-ro", "storage-full"]
     }
 }
  
