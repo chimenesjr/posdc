@@ -7,8 +7,8 @@ resource "random_id" "instance_id" {
     byte_length = 8
 }
  
-resource "google_compute_instance" "hadoop" {
-    name         = "hadoop"
+resource "google_compute_instance" "spark" {
+    name         = "spark"
     machine_type = "e2-medium" # e2-micro # e2-small
     zone         = var.zone
  
@@ -28,7 +28,7 @@ resource "google_compute_instance" "hadoop" {
         }
     }
     
-    tags = ["hadoop-firewall"]
+    tags = ["spark-firewall"]
 
     service_account {
         scopes = ["userinfo-email", "compute-ro", "storage-full"]
@@ -36,7 +36,7 @@ resource "google_compute_instance" "hadoop" {
 }
  
 resource "google_compute_firewall" "default" {
-    name    = "hadoop-firewall"
+    name    = "spark-firewall"
     network = "default"
     
     allow {
@@ -49,6 +49,6 @@ resource "google_compute_firewall" "default" {
     }
 }
 
-# gcloud compute ssh hadoop --zone us-central1-a
+# gcloud compute ssh spark --zone us-central1-a
 
-# gcloud compute instances get-serial-port-output hadoop --port 1 --start 0 --zone us-central1-a
+# gcloud compute instances get-serial-port-output spark --port 1 --start 0 --zone us-central1-a
