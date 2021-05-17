@@ -36,3 +36,7 @@ sbt clean
 sbt package
 gsutil cp gs://igti-data-science/PPR-ALL.csv /usr/local
 /usr/local/spark/bin/spark-submit --master local --class ReportJobs.ReportJobs target/scala-2.10/report-jobs_2.10-0.0.1.jar
+
+# execute python
+cd ..
+/usr/local/spark/bin/spark-submit --master local Python/main.py
