@@ -32,11 +32,15 @@ sudo apt-get install sbt
 # execute apps
 git clone -b main https://github.com/chimenesjr/HadoopDataAnalysis.git
 cd HadoopDataAnalysis/Spark
-sbt clean
-sbt package
 gsutil cp gs://igti-data-science/PPR-ALL.csv /usr/local
-/usr/local/spark/bin/spark-submit --master local --class ReportJobs.ReportJobs target/scala-2.10/report-jobs_2.10-0.0.1.jar
+
+# # # # # scala
+# sbt clean
+# sbt package
+# /usr/local/spark/bin/spark-submit --master local --class ReportJobs.ReportJobs target/scala-2.10/report-jobs_2.10-0.0.1.jar
 
 # execute python
 cd ..
 /usr/local/spark/bin/spark-submit --master local Python/main.py
+gsutil cp /usr/local/jobmedia/part-00000 gs://igti-data-science/result/JobMedia.csv
+gsutil cp /usr/local/final/part-00000 gs://igti-data-science/result/JobMediaFinal.csv
