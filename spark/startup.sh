@@ -44,3 +44,11 @@ cd ..
 /usr/local/spark/bin/spark-submit --master local Python/main.py
 gsutil cp /usr/local/jobmedia/part-00000 gs://igti-data-science/result/JobMedia.csv
 gsutil cp /usr/local/final/part-00000 gs://igti-data-science/result/JobMediaFinal.csv
+
+
+# clean
+# rm /usr/local/jobmedia/part-00000
+# rm -r /usr/local/jobmedia
+# rm /usr/local/final/part-00000
+# rm -r /usr/local/final
+
